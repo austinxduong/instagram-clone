@@ -3,22 +3,25 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 
-describe('demo routes', () => {
-  beforeEach(() => {
+describe('instagram clone routes', () => {
+  beforeAll(() => {
     return setup(pool);
   });
-});
 
-it('signs up a user via POST', async() => {
-  const res = await request(app)
-    .post('/api/v1/auth/signup')
-    .send({
+
+  it('signs up a user via POST', async() => {
+    const res = await request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        email: 'test@test.com',
+        password: 'test'
+      });
+
+    expect(res.body).toEqual({
+      id: '1',
       email: 'test@test.com',
-      password: 'test'
+    // i believe we don't pass the 'password' key/value because it gets hashed....
+    // UPDATED, yes the password does get returned hashed inside the object
     });
-
-  expect(res.body).toEqual({
-    id: '1',
-    email: 'test@test.com'
   });
 });
