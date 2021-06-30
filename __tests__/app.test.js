@@ -14,12 +14,15 @@ describe('instagram clone routes', () => {
       .post('/api/v1/auth/signup')
       .send({
         email: 'test@test.com',
-        password: 'test'
+        password: 'test',
+        profilePhotoUrl: 'randomPhotoUrl'
       });
+
 
     expect(res.body).toEqual({
       id: '1',
       email: 'test@test.com',
+      profilePhotoUrl: 'randomPhotoUrl'
     // i believe we don't pass the 'password' key/value because it gets hashed....
     // UPDATED, yes the password does get returned hashed inside the object
     });
