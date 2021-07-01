@@ -45,6 +45,6 @@ describe('instagram clone routes', () => {
       profilePhotoUrl: 'randomPhotoUrl'
     });
   });
-});
 
+});
 
