@@ -1,7 +1,9 @@
 import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
-import request, { agent } from 'supertest';
+import request from 'supertest';
 import app from '../lib/app.js';
+
+const agent = request.agent(app);
 
 describe('instagram clone routes', () => {
   beforeAll(() => {
