@@ -19,8 +19,9 @@ jobs:
         CI: true
         DATABASE_URL: postgres://alchemy:alchemy@postgres:5432/alchemy
         SALT_ROUNDS: ${{ secrets.SALT_ROUNDS }}
-        APP_SECRET: {{ secrets.APP_SECRET }}
+        APP_SECRET: ${{ secrets.APP_SECRET }}
 
 # // added secrets to nodejs.YML file, to see if test will pass on Github CI/cloud
 
 # UPDATE: attempt to pass local test to GitHub
+# UPDATE: added $ sign on line 22 to pass GitHub again
