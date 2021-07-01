@@ -18,3 +18,7 @@ jobs:
       env:
         CI: true
         DATABASE_URL: postgres://alchemy:alchemy@postgres:5432/alchemy
+        SALT_ROUNDS=8
+        APP_SECRET=someSecret
+
+# // added secrets to nodejs.YML file, to see if test will pass on Github CI/cloud
