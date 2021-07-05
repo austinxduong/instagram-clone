@@ -10,44 +10,84 @@ describe('instagram clone routes', () => {
   let user;
 
 
-  beforeEach (async () => {
+  //   beforeEach (async () => {
+
+  //     user = await UserService.create({
+  //       email: 'test@test.com',
+  //       password: 'test',
+  //       profilePhotoUrl: 'randomPhotoUrl'
+  //     });
+
+  //     await setup(pool);
+  //     await agent
+  //       .post('/api/v1/auth/signup')
+  //       .send({
+  //         email: 'test@test.com',
+  //         password: 'test',
+  //         profilePhotoUrl: 'randomPhotoUrl'
+  //       });
+
+  //     return user;
+  //   });
+
+
+
+  //   it('creates an instagram post, via .POST', async () => {
+  //     const res = await agent
+  //       .post('/api/v1/posts')
+  //       .send({
+  //         userId: '1',
+  //         photoUrl: 'test',
+  //         caption: 'selfie',
+  //         tags: ['happy', 'beautiful', 'smart']
+  //       });
+  //     expect(res.body).toEqual({
+  //       id: '1',
+  //       userId: '1',
+  //       photoUrl: 'test',
+  //       caption: 'selfie',
+  //       tags: ['happy', 'beautiful', 'smart']
+  //     });
+  //   }); 
+  // });
+
+
+  beforeEach(async() => {
+    await setup(pool);
 
     user = await UserService.create({
-      email: 'test@test.com',
-      password: 'password',
-      profilePhotoUrl: 'profilephoto.url'
+      email: 'test',
+      password: '123',
+      profilePhotoUrl: 'selfie'
     });
 
-    await setup(pool);
+    //logs in user w/ cookie + token
     await agent
-      .post('/api/v1/auth/signup')
+      .post('/api/v1/auth/login')
       .send({
-        email: 'test@test.com',
-        password: 'test',
-        profilePhotoUrl: 'randomPhotoUrl'
+        email: 'test',
+        password: '123',
+        profilePhotoUrl: 'selfie'
       });
-
-    return user;
   });
 
-
-
-  it('creates an instagram post, via .POST', async () => {
+  test('creates an instagram post, via .POST route', async () => {
     const res = await agent
       .post('/api/v1/posts')
       .send({
         userId: '1',
-        photoUrl: 'test',
-        caption: 'selfie',
-        tags: ['happy', 'beautiful', 'smart']
+        photoUrl: 'selfie',
+        caption: 'just bein me',
+        tags: ['happy', 'beautiful', 'intelligent']
       });
+
     expect(res.body).toEqual({
       id: '1',
       userId: '1',
-      photoUrl: 'test',
-      caption: 'selfie',
-      tags: ['happy', 'beautiful', 'smart']
+      photoUrl: 'selfie',
+      caption: 'just bein me',
+      tags: ['happy', 'beautiful', 'intelligent']
     });
-  }); 
+  });
 });
 
